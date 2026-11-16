@@ -13,7 +13,7 @@ function openImage(trigger, source, alt, caption) {
   viewer.showModal();
 }
 
-for (const img of document.querySelectorAll('main img:not(.hero-media img, .overview-backdrop, .doodle-icon)')) {
+for (const img of document.querySelectorAll('main img:not(.hero-media img, .doodle-icon)')) {
   let trigger = img.closest('a');
   if (!trigger) {
     trigger = document.createElement('button');

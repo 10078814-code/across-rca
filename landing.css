@@ -214,12 +214,13 @@ body, button { font-family: var(--landing-type); }
   align-items: center;
 }
 #overview-story .overview-context {
+  margin-top: clamp(20px, 3vw, 38px);
   font: 400 clamp(1.03rem, 1.42vw, 1.25rem)/1.65 var(--landing-type);
   color: #4e584a;
   max-width: 48ch;
 }
 #overview-story .question {
-  margin-top: clamp(20px, 3vw, 38px);
+  margin-top: 0;
   border-top: 0;
   padding-top: 0;
   font: 700 clamp(2rem, 4vw, 4.4rem)/1.04 var(--display-type);
@@ -239,23 +240,7 @@ body, button { font-family: var(--landing-type); }
   padding: 10px 17px;
 }
 .overview-next .next-title { font: 500 1rem/1.15 var(--landing-type); }
-.overview-photos {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(13, minmax(0, 1fr));
-  align-items: start;
-}
-#overview-story .overview-photos img { height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
-#overview-story .overview-photos .overview-backdrop {
-  grid-area: 1 / 1 / 2 / 11;
-  aspect-ratio: 3 / 4;
-  object-position: center;
-}
-.overview-photos figure {
-  position: relative;
-  grid-area: 1 / 4 / 2 / -1;
-  margin-top: 10%;
-}
+#overview-story .overview-photo img { height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
 .overview-links { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 20px; }
 .overview-links .landing-link { margin: 0; }
 .overview-links .cover-zoom { font-size: .75rem; text-underline-offset: 4px; }
@@ -427,11 +412,11 @@ body, button { font-family: var(--landing-type); }
       clip-path 1050ms cubic-bezier(.22,.61,.36,1) var(--reveal-delay);
   }
 
-  :is(.question, .overview-backdrop, .columns > article:nth-child(2n), .guide-list > li:nth-child(2n), .footer-grid > div:nth-child(2n)) {
+  :is(.overview-context, .columns > article:nth-child(2n), .guide-list > li:nth-child(2n), .footer-grid > div:nth-child(2n)) {
     --reveal-delay: 105ms;
   }
 
-  :is(.overview-next, .overview-photos figure, .columns > article:nth-child(3n), .guide-list > li:nth-child(3n)) {
+  :is(.overview-next, .overview-photo, .columns > article:nth-child(3n), .guide-list > li:nth-child(3n)) {
     --reveal-delay: 210ms;
   }
 }

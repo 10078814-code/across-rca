@@ -2,8 +2,7 @@
   if (!('IntersectionObserver' in window)) return;
 
   const imageSelectors = [
-    '.overview-backdrop',
-    '.overview-photos figure',
+    '.overview-photo',
     '.accordion-gallery',
     '.species-tile',
     '.sketch-card figure',
