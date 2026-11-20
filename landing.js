@@ -12,73 +12,9 @@
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
   const covers = [...document.querySelectorAll('.chapter-cover')];
 
-  const firstImage = stage.querySelector('.hero-media img');
-  const previews = Array.from(stage.querySelectorAll('.hero-preview'));
-  const slides = [
-    {
-      photo: firstImage.getAttribute('src'),
-      caption: stage.querySelector('.hero-media figcaption').textContent,
-      alt: firstImage.alt
-    },
-    ...previews.map(({dataset}) => ({...dataset, alt: dataset.caption}))
-  ];
-  const controls = stage.querySelector('.hero-controls');
-  const count = controls.querySelector('.hero-count');
-  const pause = controls.querySelector('[data-carousel="pause"]');
-  const zoom = stage.querySelector('.hero-zoom');
   const copy = stage.querySelector('.hero');
-  const pad = value => String(value).padStart(2, '0');
-  let current = 0;
-  let timer;
   let frame;
-  let autoplay = !motion.matches;
-  let landingVisible = true;
   let activeChapter;
-
-  function showSlide(index) {
-    current = (index + slides.length) % slides.length;
-    previews.forEach((preview, i) => preview.classList.toggle('is-current', i + 1 === current));
-    count.textContent = pad(current + 1) + ' / ' + pad(slides.length);
-    zoom.setAttribute('aria-label', 'View site photo: ' + slides[current].alt);
-  }
-
-  function scheduleSlide() {
-    clearInterval(timer);
-    if (autoplay && landingVisible && !document.hidden && !document.querySelector('#image-viewer').open) {
-      timer = setInterval(() => showSlide(current + 1), 6500);
-    }
-  }
-
-  function updatePause() {
-    pause.firstElementChild.textContent = autoplay ? 'Ⅱ' : '▶';
-    pause.setAttribute('aria-label', autoplay ? 'Pause background slideshow' : 'Play background slideshow');
-    scheduleSlide();
-  }
-
-  controls.addEventListener('click', event => {
-    switch (event.target.closest('button')?.dataset.carousel) {
-      case 'previous':
-        showSlide(current - 1);
-        break;
-      case 'next':
-        showSlide(current + 1);
-        break;
-      case 'pause':
-        autoplay = !autoplay;
-        updatePause();
-        return;
-      default:
-        return;
-    }
-    scheduleSlide();
-  });
-  zoom.addEventListener('click', () => {
-    const {photo, alt, caption} = slides[current];
-    openImage(zoom, photo, alt, caption);
-    scheduleSlide();
-  });
-  document.querySelector('#image-viewer').addEventListener('close', scheduleSlide);
-  document.addEventListener('visibilitychange', scheduleSlide);
 
   const clamp = value => Math.min(1, Math.max(0, value));
   function ease(value) {
@@ -156,10 +92,6 @@
       : progress >= .29);
 
     const showLanding = motion.matches ? track.getBoundingClientRect().bottom > navHeight : progress < .34;
-    if (landingVisible !== showLanding) {
-      landingVisible = showLanding;
-      scheduleSlide();
-    }
     copy.inert = !showLanding && !copy.contains(document.activeElement);
   }
 
@@ -183,9 +115,7 @@
   }
 
   motion.addEventListener('change', () => {
-    autoplay = !motion.matches;
     updateMotion();
-    updatePause();
   });
   addEventListener('scroll', queueScroll, {passive: true});
   addEventListener('resize', queueScroll);
@@ -196,10 +126,5 @@
     layoutObserver.observe(section);
   }
 
-  controls.hidden = false;
-  zoom.hidden = false;
-  zoom.setAttribute('aria-haspopup', 'dialog');
-  showSlide(0);
   updateMotion();
-  updatePause();
 })();

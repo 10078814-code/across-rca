@@ -420,3 +420,17 @@ body, button { font-family: var(--landing-type); }
     --reveal-delay: 210ms;
   }
 }
+
+.footer-grid { grid-template-columns: 1.1fr 1.05fr .72fr; }
+.outcome-space {
+  min-height: clamp(200px, 28vw, 400px);
+  margin-bottom: clamp(28px, 4vw, 60px);
+  border: 1px solid #bdb5a96b;
+  background: #f6f4eb08;
+}
+#design-process > .wrap > .species-group {
+  padding-top: clamp(32px, 5vw, 72px);
+}
+#overview-story .overview-context { max-width: 52ch; }
+@media (max-width: 950px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 500px) { .footer-grid { grid-template-columns: 1fr; } }
