@@ -2,6 +2,9 @@
   if (!('IntersectionObserver' in window)) return;
 
   const imageSelectors = [
+    '.journey-stage figure',
+    '.proposal-layout figure',
+    '.prototype-studies figure',
     '.overview-photo',
     '.accordion-gallery',
     '.species-tile',
@@ -9,6 +12,10 @@
     '.annotated-details figure'
   ];
   const textSelectors = [
+    '.section-heading > *',
+    '.journey-copy',
+    '.research-layout > *',
+    '.word-origin',
     '.overview-copy > *',
     '.chapter .subhead',
     '.site-notes',
