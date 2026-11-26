@@ -814,3 +814,10 @@ body, .chapter, #bio-habere, #site-species, #design-process, #outcome, #guide { 
 /* Focus portrait crops on the module rather than the surrounding workbench. */
 .process-card:nth-child(4) figure img { object-fit: cover; object-position: 50% 32%; }
 .process-card:nth-child(5) figure img { object-fit: cover; object-position: 50% 40%; }
+/* Match landing-page lettering to the cream used on green chapter openings. */
+.bar:not(.is-solid),
+.hero-stage, .hero-stage :is(h1, p, .label, .button, .hero-zoom, .hero-foot, .hero-controls) {
+  color: var(--chapter-light);
+}
+.hero-stage .button { border-bottom-color: #faf3d3ad; }
+.hero-stage .button:hover { border-bottom-color: var(--chapter-light); }
