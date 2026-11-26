@@ -12,12 +12,25 @@
     if (micro) {
       const cards = [...micro.querySelectorAll('.material-card')];
       const travel = micro.offsetHeight - (innerHeight - nav);
-      const progress = clamp((nav - micro.getBoundingClientRect().top) / travel) * 2.8;
+      // Begin only after the complete exhibition stage is pinned below the nav.
+      const progress = clamp((nav - micro.getBoundingClientRect().top) / travel) * 3.4;
+      const stageHeight = micro.querySelector('.micro-stage').offsetHeight;
       cards.forEach((card, i) => {
-        if (mobile || motion.matches) { card.style.removeProperty('transform'); card.style.removeProperty('opacity'); return; }
-        const entry = i === 0 ? 1 : clamp(progress - (i - 1) * 1.1);
-        card.style.opacity = entry > 0 ? '1' : '0';
-        card.style.transform = `translate(${(i - 1) * 15}px, ${(1 - entry) * 5}%) rotate(${[-6, 0, 6][i] + (1 - entry) * 16}deg)`;
+        if (mobile || motion.matches) {
+          card.style.removeProperty('transform');
+          card.style.removeProperty('opacity');
+          card.style.removeProperty('pointer-events');
+          card.inert = false;
+          return;
+        }
+        const entry = clamp((progress - i * 1.05) / .9);
+        const eased = entry * entry * (3 - 2 * entry);
+        const rise = (1 - eased) * (stageHeight + card.offsetHeight) * .65;
+        // Keep cards opaque: their physical movement into the clipped stage reveals them.
+        card.style.opacity = '1';
+        card.style.pointerEvents = entry > .95 ? '' : 'none';
+        card.inert = entry <= .95;
+        card.style.transform = `translate(${(i - 1) * 15}px, ${rise}px) rotate(${[-6, 0, 6][i] + (1 - eased) * 12}deg)`;
       });
     }
     for (const stack of stacks) {

@@ -216,7 +216,7 @@ body, button { font-family: var(--landing-type); }
 #overview-story .overview-context {
   margin-top: clamp(20px, 3vw, 38px);
   font: 400 clamp(1.03rem, 1.42vw, 1.25rem)/1.65 var(--landing-type);
-  color: #4e584a;
+  color: var(--ink);
   max-width: 48ch;
 }
 #overview-story .question {
@@ -224,7 +224,7 @@ body, button { font-family: var(--landing-type); }
   border-top: 0;
   padding-top: 0;
   font: 700 clamp(2rem, 4vw, 4.4rem)/1.04 var(--display-type);
-  color: #30372b;
+  color: var(--ink);
   max-width: 19ch;
   text-wrap: balance;
 }
@@ -795,3 +795,22 @@ body, .chapter, #bio-habere, #site-species, #design-process, #outcome, #guide { 
 @media (min-width: 761px) { .micro-stage { overflow: clip; } }
 @media (min-width: 761px) { .process-card { grid-template-rows: minmax(0, 1fr); } }
 .process-copy, .process-card figure, .process-card figure .image-trigger, .process-card figure img { min-height: 0; min-width: 0; }
+
+/* Overview retains its original pale brickwork rather than a green chapter band. */
+.overview-opening, .overview-opening h2, .overview-opening .label,
+.overview-copy .overview-context, .overview-copy h3.question { color: #325637; }
+.has-wipe .overview-opening::before {
+  background: radial-gradient(ellipse at center, #efede5 14%, #efede5e6 45%, #efede5b5 100%), url(assets/brick-screen.jpg) center / cover;
+  animation: none;
+}
+/* Every material starts below the pinned screen, including the first Stone card. */
+@media (min-width: 761px) and (prefers-reduced-motion: no-preference) {
+  .micro-track { height: 340svh; }
+  .material-card { transform: translateY(120svh); }
+}
+/* Preserve the complete photographed object inside each centred preview. */
+.process-card figure .image-trigger { background: transparent; }
+.process-card figure img { object-fit: contain; object-position: 50% 50%; transform: none !important; }
+/* Focus portrait crops on the module rather than the surrounding workbench. */
+.process-card:nth-child(4) figure img { object-fit: cover; object-position: 50% 32%; }
+.process-card:nth-child(5) figure img { object-fit: cover; object-position: 50% 40%; }
