@@ -68,7 +68,7 @@ SOFTWARE.
     const grayscale = true;
     const showLabels = true;
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-    let active = Math.min(Math.max(2, 0), count - 1);
+    let active = 0;
     let timeline;
     let mediaSize = 320;
     let firstRun = true;

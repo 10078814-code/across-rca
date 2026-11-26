@@ -60,7 +60,7 @@ document.addEventListener('click', event => {
   if (event.defaultPrevented || event.button !== 0 || event.ctrlKey ||
       event.metaKey || event.shiftKey || event.altKey) return;
   const link = event.target.closest('a[href^="#"]');
-  if (!link || link.hash === location.hash) return;
+  if (!link) return;
   const destination = document.getElementById(link.hash.slice(1));
   if (!destination) return;
 
@@ -71,7 +71,8 @@ document.addEventListener('click', event => {
 
   if (!destination.hasAttribute('tabindex')) destination.tabIndex = -1;
   destination.focus({preventScroll: true});
-  destination.scrollIntoView({behavior: reducedMotion.matches ? 'instant' : 'smooth'});
+  const offset = document.querySelector('.bar').getBoundingClientRect().height;
+  window.scrollTo({top: scrollY + destination.getBoundingClientRect().top - offset, behavior: reducedMotion.matches ? 'instant' : 'smooth'});
   updateReturnButton();
 });
 

@@ -580,3 +580,125 @@ body, button { font-family: var(--landing-type); }
 .ecology-card p { color: var(--muted); font-size: 1rem; line-height: 1.65; }
 .planting-intro { margin: -8px 0 28px; color: var(--muted); }
 @media (max-width: 760px) { .ecology-grid { grid-template-columns: 1fr; gap: 34px; } .ecology-card img { max-height: 420px; } }
+
+/* A botanical palette shared across all six chapters. */
+:root {
+  --ink: #273326;
+  --muted: #273326;
+  --paper: #faf3d3;
+  --overview-paper: #faf3d3;
+  --green: #325637;
+  --lime: #dbe7b4;
+  --line: #a7bb8a;
+  --brick: #689657;
+  --leaf-green: #a6c893;
+}
+body, .chapter, #bio-habere, #site-species, #design-process, #outcome, #guide { color: var(--ink); }
+.bar { grid-template-columns: 40px minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); }
+.bar .brand { align-self: center; justify-content: center; height: 44px; }
+.bar .brand-plant { width: 28px; height: 34px; }
+.bar nav { justify-self: center; align-self: center; min-height: 44px; }
+.bar.is-solid { background: var(--paper); color: var(--ink); border-color: var(--line); }
+.hero-stage .hero-media { inset: -7% 0 0; height: 107%; }
+.hero-stage .hero-media img { height: 100%; object-position: center 65%; }
+.overview-opening { color: var(--ink); }
+.overview-context, .overview-question, .overview-next, .overview-links, .overview-opening h2 { color: var(--ink); }
+.has-wipe .overview-opening::before { background: radial-gradient(ellipse at center, #faf3d3 14%, #faf3d3e6 45%, #faf3d3b5 100%), url(assets/brick-screen.jpg) center / cover; }
+.section-heading, .section-heading::before { background: var(--leaf-green); color: var(--ink); }
+.section-heading .label, .test .section-heading .label, .section-heading .word-origin, .section-heading > p { color: var(--ink); }
+.section-heading .label::before { background: var(--green); }
+.chapter :is(.subhead,h3,h4,.mono,figcaption,.note,.comparison dt,.comparison dd), .test figcaption, .test .columns p { color: var(--ink); }
+.species-status, .species-card, .sketch-card, .note, .guide-list li { border-color: var(--line); }
+.pending-card { background: #e9edcb; }
+.reserved-image, .future-slot { background: #e3ecc9; border-color: var(--line); }
+.site-footer { background: var(--green); color: var(--paper); }
+.footer-grid :is(h2,h3,p,dt,dd), .footer-team, .footer-team a, .footer-grid nav { color: var(--paper); }
+.image-trigger::after, .return-spot { background: var(--green); }
+
+/* The material story keeps the introduction in view while cards arrive in order. */
+.micro-story { display: grid; grid-template-columns: .85fr 1.15fr; align-items: start; gap: clamp(40px, 7vw, 110px); padding: 55px 0 70px; }
+.micro-intro { position: sticky; top: calc(var(--nav-height) + 60px); padding-bottom: 50px; }
+.micro-intro h3 { font: 700 clamp(2.6rem, 4.5vw, 4.9rem)/1.05 var(--display-type); margin: 0 0 30px; }
+.micro-intro p { font-size: clamp(1rem, 1.5vw, 1.25rem); line-height: 1.65; max-width: 38ch; }
+.scroll-stack { position: relative; isolation: isolate; padding-bottom: 25px; }
+.stack-card { position: sticky; top: calc(var(--nav-height) + 30px); transform-origin: 50% 0; will-change: transform; z-index: calc(1 + var(--card-index)); }
+.material-card { padding: 26px; background: #dce7bb; border: 1px solid #8cab79; border-radius: 16px; margin-bottom: 22svh; box-shadow: 0 14px 25px #27332612; }
+.material-card:nth-child(2) { background: #edcfac; }
+.material-card:nth-child(3) { background: #b6d29f; margin-bottom: 0; }
+.material-caption h4 { font: 700 clamp(2rem, 3vw, 3rem)/1.1 var(--display-type); margin: 0 0 10px; }
+.material-caption p { font-size: 1rem; line-height: 1.55; max-width: 40ch; min-height: 3.2em; margin-bottom: 22px; }
+.material-card figure { margin: 0; }
+.material-card img { aspect-ratio: 4 / 3; width: 100%; object-fit: cover; border-radius: 8px; }
+
+/* Botanical collage stays at the edges so the three plant studies remain readable. */
+.botanical-planting { position: relative; isolation: isolate; margin: 55px calc((100% - 100vw) / 2) 0; padding: 65px max(36px, calc((100vw - 1480px) / 2)) 80px; overflow: clip; background: #faf3d3; }
+.planting-content { position: relative; z-index: 1; max-width: 1240px; margin: auto; padding-inline: clamp(20px, 4vw, 70px); }
+.planting-content > h3 { justify-content: center; text-align: center; }
+.planting-intro { text-align: center; margin: 0 auto 38px; }
+.botanical-planting .ecology-card { padding: 14px; border: 1px solid #a8bd89; background: #faf3d3f5; border-radius: 10px; }
+.botanical-planting .ecology-card figure { border-radius: 6px; }
+.botanical-planting .ecology-card h4 { font-size: clamp(1.4rem, 2.2vw, 1.9rem); }
+.botanical-drift { position: absolute; inset: -80px 0; pointer-events: none; transform: translateY(var(--botanical-shift, 0px)); }
+.botanical-drift i { position: absolute; width: clamp(190px, 28vw, 430px); aspect-ratio: 1; background: url(assets/botanical-rosette.svg) center / contain no-repeat; opacity: .6; }
+.botanical-drift i:nth-child(1) { top: 1%; left: -14%; rotate: 20deg; }
+.botanical-drift i:nth-child(2) { top: 0; right: -12%; rotate: -15deg; }
+.botanical-drift i:nth-child(3) { top: 48%; left: -18%; scale: 1.2; }
+.botanical-drift i:nth-child(4) { bottom: 0; right: -15%; rotate: 60deg; }
+.botanical-drift i:nth-child(5) { bottom: -5%; left: 28%; scale: .5; }
+.botanical-drift i:nth-child(6) { top: -8%; right: 30%; scale: .35; }
+
+/* Eight full-width development cards share exactly the same image frame. */
+.development-story { margin-top: 70px; }
+.development-intro { display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(30px, 6vw, 90px); align-items: end; margin-bottom: 45px; }
+.development-intro h3 { font: 700 clamp(2.7rem, 4.8vw, 5rem)/1.04 var(--display-type); max-width: 15ch; }
+.development-intro p { font-size: clamp(1rem, 1.4vw, 1.2rem); line-height: 1.65; }
+.process-card { display: grid; grid-template-columns: .85fr 1.15fr; align-items: stretch; gap: clamp(28px, 5vw, 74px); padding: clamp(26px, 3.5vw, 50px); min-height: 500px; margin-bottom: 24svh; border: 1px solid #91ac77; border-radius: 15px; background: #e0e9bf; box-shadow: 0 16px 36px #27332615; }
+.process-card:nth-child(3n+2) { background: #efd6b6; }
+.process-card:nth-child(3n) { background: #bed4aa; }
+.process-card:last-child { margin-bottom: 0; }
+.process-copy { display: flex; flex-direction: column; justify-content: space-between; gap: 35px; }
+.process-number { font: 700 clamp(3.5rem, 6vw, 6rem)/1 var(--display-type); color: var(--ink); }
+.process-copy h4 { font: 700 clamp(1.9rem, 3vw, 3rem)/1.05 var(--display-type); margin: 0 0 20px; }
+.process-copy p { font-size: 1.05rem; line-height: 1.6; max-width: 36ch; }
+.process-card figure { margin: 0; align-self: center; min-width: 0; }
+.process-card figure .image-trigger { aspect-ratio: 4 / 3; display: grid; place-items: center; border-radius: 8px; background: #faf8ef; overflow: hidden; }
+.process-card figure img { aspect-ratio: 4 / 3; width: 100%; height: 100%; object-fit: contain; }
+@media (min-width: 761px) and (max-height: 750px) {
+  .process-card { min-height: 440px; padding: 26px; }
+  .process-number { font-size: 3.8rem; }
+}
+@media (max-width: 1050px) { .bar { grid-template-columns: 32px minmax(0,1fr); gap: 20px; } .bar nav { gap: 18px; } .bar nav a { font-size: .72rem; } }
+@media (max-width: 760px) {
+  :root { --nav-height: 76px; }
+  .bar { display: grid; grid-template-columns: 30px minmax(0,1fr); align-items: center; gap: 16px; padding: 0 16px; min-height: 76px; }
+  .bar .brand { margin: 0; height: 40px; }
+  .bar nav { width: 100%; padding: 0; min-width: 0; justify-content: flex-start; overflow-x: auto; gap: 19px; }
+  .bar nav a { font-size: .78rem; padding-block: 20px; }
+  .hero-stage .hero-media { inset: -5% 0 0; height: 105%; }
+  .hero-stage .hero-media img { object-position: 58% 65%; }
+  .micro-story { grid-template-columns: 1fr; gap: 24px; padding-top: 25px; }
+  .micro-intro { position: static; padding-bottom: 0; }
+  .micro-intro h3 { margin-bottom: 20px; }
+  .material-card, .process-card { position: relative; top: auto; margin-bottom: 28px; transform: none; }
+  .material-card { padding: 20px; }
+  .botanical-planting { padding: 45px 16px; }
+  .planting-content { padding: 0 8px; }
+  .botanical-drift i { opacity: .4; }
+  .development-intro { grid-template-columns: 1fr; gap: 24px; }
+  .process-card { grid-template-columns: 1fr; min-height: 0; padding: 22px; gap: 24px; }
+  .process-copy { gap: 24px; }
+  .process-copy h4 { font-size: 2rem; }
+  .process-copy p { font-size: 1rem; }
+  .process-number { font-size: 3.2rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stack-card { position: relative; top: auto; transform: none !important; margin-bottom: 28px; }
+  .micro-intro { position: static; }
+  .botanical-drift { transform: none; }
+}
+.sketch-card, .references article, .iteration article { background: #e7edcc; border-color: var(--line); }
+.overview-copy, .overview-copy p, .overview-copy h3, .comparison, .comparison dt, .comparison dd, .habitat-key h4, .habitat-key p { color: var(--ink); }
+@media (max-width: 760px) and (prefers-reduced-motion: no-preference) {
+  .stack-card { transition: opacity 700ms ease, translate 800ms cubic-bezier(.22,.61,.36,1); }
+  .stack-card:not(.is-card-visible) { opacity: 0; translate: 0 25px; }
+}
