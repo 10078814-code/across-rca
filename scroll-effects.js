@@ -3,6 +3,7 @@
 
   const imageSelectors = [
     '.journey-stage figure',
+    '.ecology-card figure',
     '.proposal-layout figure',
     '.prototype-studies figure',
     '.overview-photo',
@@ -14,6 +15,8 @@
   const textSelectors = [
     '.section-heading > *',
     '.journey-copy',
+    '.ecology-card h4',
+    '.ecology-card p',
     '.research-layout > *',
     '.word-origin',
     '.overview-copy > *',
