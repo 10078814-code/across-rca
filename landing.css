@@ -702,3 +702,96 @@ body, .chapter, #bio-habere, #site-species, #design-process, #outcome, #guide { 
   .stack-card { transition: opacity 700ms ease, translate 800ms cubic-bezier(.22,.61,.36,1); }
   .stack-card:not(.is-card-visible) { opacity: 0; translate: 0 25px; }
 }
+
+/* Calm paper, forest chapter openings, and viewport-sized exhibition stages. */
+:root { --ink: #325637; --muted: #325637; --paper: #efede5; --overview-paper: #efede5; --chapter-light: #faf3d3; }
+.botanical-planting { background: var(--paper); }
+.botanical-planting .ecology-card { background: #efede5f5; }
+.section-heading, .section-heading::before { background: #325637; color: var(--chapter-light); }
+.section-heading :is(h2,p,.label,.word-origin), .test .section-heading .label { color: var(--chapter-light); }
+.section-heading .label::before { background: #bcd0a6; }
+.section-heading { position: relative; }
+.section-heading::before {
+  background: radial-gradient(ellipse at 20% 35%, #93bc8150, transparent 48%), radial-gradient(ellipse at 80% 65%, #bfd9a02b, transparent 50%), #325637;
+  background-size: 180% 180%, 160% 180%, auto;
+  animation: forest-light 19s ease-in-out infinite alternate;
+}
+@keyframes forest-light { from { background-position: 0% 25%, 100% 60%, center; } to { background-position: 100% 75%, 0% 10%, center; } }
+.overview-opening, .overview-opening h2, .overview-opening .label { color: var(--chapter-light); }
+.has-wipe .overview-opening::before {
+  background: radial-gradient(ellipse at 20% 35%, #93bc813d, transparent 55%), linear-gradient(#325637e8,#325637ed), url(assets/brick-screen.jpg) center / cover;
+  background-size: 160% 180%, auto, cover;
+  animation: forest-light 19s ease-in-out infinite alternate;
+}
+.footer-grid :is(h2,h3,p,dt,dd), .footer-team, .footer-team a, .footer-grid nav { color: var(--chapter-light); }
+.micro-track { position: relative; height: 270svh; }
+.micro-stage { position: sticky; top: var(--nav-height); height: calc(100svh - var(--nav-height)); }
+.micro-story { height: 100%; padding: 45px 4%; grid-template-columns: 1fr 1fr; gap: 7%; align-items: center; }
+.micro-intro { position: static; padding: 0; }
+.micro-intro h3 { font-size: clamp(2.5rem, 4.5vw, 4.4rem); margin-bottom: 26px; }
+.micro-intro p { font-size: clamp(1rem, 1.25vw, 1.15rem); line-height: 1.65; max-width: 37ch; }
+.material-stack { height: 100%; max-height: 580px; padding: 0; display: grid; place-items: center; perspective: 1800px; }
+.material-card, .material-card:nth-child(2), .material-card:nth-child(3) {
+  position: absolute; inset: auto; width: min(82%, 390px); height: min(84%, 490px); padding: 22px; margin: 0;
+  background: #c4d4b4; border: 1px solid #7e9e75; border-radius: 10px; transform-origin: 50% 80%;
+  display: flex; flex-direction: column; gap: 16px; box-shadow: 0 10px 24px #32563714;
+}
+.material-caption h4 { font-size: clamp(1.7rem, 2.8vw, 2.6rem); }
+.material-caption p { font-size: .95rem; line-height: 1.45; min-height: 0; margin: 0; }
+.material-card figure { min-height: 0; flex: 1; }
+.material-card .image-trigger, .material-card img { height: 100%; width: 100%; aspect-ratio: auto; object-fit: cover; border-radius: 4px; }
+.botanical-planting { padding-block: 42px; }
+.planting-content { max-width: 1160px; padding-inline: 28px; }
+.planting-content > h3 { margin: 0 0 12px; font-size: clamp(2.2rem, 3.5vw, 3.6rem); }
+.planting-intro { margin-bottom: 26px; font-size: 1rem; }
+.botanical-planting .ecology-grid { gap: 26px; }
+.botanical-planting .ecology-card figure { margin-bottom: 18px; }
+.botanical-planting .ecology-card img { height: clamp(150px, 29svh, 270px); aspect-ratio: auto; object-fit: cover; }
+.botanical-planting .ecology-card h4 { font-size: clamp(1.2rem, 1.75vw, 1.7rem); }
+.botanical-planting .ecology-card p { font-size: .95rem; line-height: 1.5; }
+.development-story { margin: 90px auto 50px; max-width: 1200px; }
+.development-intro { margin: 0 18px 65px; gap: 12%; }
+.development-intro h3 { font-size: clamp(2.6rem, 4vw, 4rem); }
+.development-intro p { font-size: 1.05rem; }
+.process-stack { padding: 0 24px 24px; }
+.process-card, .process-card:nth-child(3n+2), .process-card:nth-child(3n) {
+  min-height: 0; height: min(560px, calc(100svh - var(--nav-height) - 110px));
+  grid-template-columns: .9fr 1.1fr; padding: clamp(24px, 3vw, 40px); gap: 7%;
+  background: #e0e9bf; margin-bottom: 24svh; top: calc(var(--nav-height) + 50px);
+}
+.process-card:nth-child(even) { background: #bed4aa; }
+.process-number { font-size: clamp(3rem, 5vw, 5rem); }
+.process-copy { gap: 24px; }
+.process-copy h4 { font-size: clamp(1.5rem, 2.5vw, 2.5rem); margin-bottom: 14px; }
+.process-copy p { font-size: 1rem; line-height: 1.5; }
+.process-card figure { height: 100%; align-self: stretch; }
+.process-card figure .image-trigger { height: 100%; aspect-ratio: auto; background: transparent; }
+.process-card figure img { width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; }
+@media (max-width: 760px) {
+  .micro-track { height: auto; }
+  .micro-stage { position: static; height: auto; }
+  .micro-story { height: auto; padding: 35px 0; grid-template-columns: 1fr; gap: 35px; }
+  .material-stack { height: auto; display: grid; gap: 24px; max-height: none; }
+  .material-card, .material-card:nth-child(2), .material-card:nth-child(3) { position: relative; width: 100%; height: auto; min-height: 0; top: auto; padding: 20px; }
+  .material-card figure { height: 270px; flex: auto; }
+  .botanical-planting { padding-block: 40px; }
+  .planting-content { padding-inline: 8px; }
+  .botanical-planting .ecology-card img { height: 260px; }
+  .development-story { margin-top: 55px; }
+  .development-intro { margin: 0 0 35px; }
+  .process-stack { padding: 0; }
+  .process-card, .process-card:nth-child(3n+2), .process-card:nth-child(3n) { grid-template-columns: 1fr; height: auto; min-height: 0; margin-bottom: 28px; padding: 22px; top: auto; }
+  .process-card figure { height: 300px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .section-heading::before, .has-wipe .overview-opening::before { animation: none; }
+  .micro-track { height: auto; }
+  .micro-stage { position: static; height: auto; }
+  .micro-story { height: auto; align-items: start; }
+  .material-stack { display: grid; gap: 24px; height: auto; max-height: none; }
+  .material-card, .material-card:nth-child(2), .material-card:nth-child(3) { position: relative; width: 100%; height: 490px; transform: none !important; }
+}
+.overview-copy .overview-context, .overview-copy h3.question, .guide-list p { color: var(--ink); }
+@media (min-width: 761px) { .micro-stage { overflow: clip; } }
+@media (min-width: 761px) { .process-card { grid-template-rows: minmax(0, 1fr); } }
+.process-copy, .process-card figure, .process-card figure .image-trigger, .process-card figure img { min-height: 0; min-width: 0; }

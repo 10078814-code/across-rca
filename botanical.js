@@ -8,7 +8,20 @@
     frame = null;
     const mobile = innerWidth <= 760;
     const nav = document.querySelector('.bar').getBoundingClientRect().height;
+    const micro = document.querySelector('.micro-track');
+    if (micro) {
+      const cards = [...micro.querySelectorAll('.material-card')];
+      const travel = micro.offsetHeight - (innerHeight - nav);
+      const progress = clamp((nav - micro.getBoundingClientRect().top) / travel) * 2.8;
+      cards.forEach((card, i) => {
+        if (mobile || motion.matches) { card.style.removeProperty('transform'); card.style.removeProperty('opacity'); return; }
+        const entry = i === 0 ? 1 : clamp(progress - (i - 1) * 1.1);
+        card.style.opacity = String(entry);
+        card.style.transform = `translate(${(i - 1) * 15}px, ${(1 - entry) * 5}%) rotate(${[-6, 0, 6][i] + (1 - entry) * 16}deg)`;
+      });
+    }
     for (const stack of stacks) {
+      if (stack.classList.contains('material-stack')) continue;
       const cards = [...stack.querySelectorAll('.stack-card')];
       cards.forEach((card, i) => {
         if (motion.matches || mobile) { card.style.removeProperty('transform'); return; }
