@@ -16,7 +16,7 @@
       cards.forEach((card, i) => {
         if (mobile || motion.matches) { card.style.removeProperty('transform'); card.style.removeProperty('opacity'); return; }
         const entry = i === 0 ? 1 : clamp(progress - (i - 1) * 1.1);
-        card.style.opacity = String(entry);
+        card.style.opacity = entry > 0 ? '1' : '0';
         card.style.transform = `translate(${(i - 1) * 15}px, ${(1 - entry) * 5}%) rotate(${[-6, 0, 6][i] + (1 - entry) * 16}deg)`;
       });
     }
